@@ -13,7 +13,7 @@ import com.fostiums.seaapp.ui.home.models.CarouselViewpagerModel
 
 class AdapterCarouselViewPager(val models: List<CarouselViewpagerModel>, val context: Context) : PagerAdapter() {
 
-    private var layoutInflater: LayoutInflater? = null
+
 
     override fun getCount(): Int {
         return models.size
