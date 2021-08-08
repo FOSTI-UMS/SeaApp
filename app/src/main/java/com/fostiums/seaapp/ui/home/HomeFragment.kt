@@ -1,5 +1,6 @@
 package com.fostiums.seaapp.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.fostiums.seaapp.R
 import com.fostiums.seaapp.databinding.FragmentHomeBinding
+
 import com.fostiums.seaapp.ui.home.adapter.RekomendasiGridViewAdapter
 
 import com.fostiums.seaapp.ui.home.models.KategoriCarouselModel
 import com.fostiums.seaapp.ui.home.widgets.ExpandableGridView
+import com.fostiums.seaapp.ui.product.ProductPage
 
 import com.jama.carouselview.CarouselView
 import com.jama.carouselview.enums.IndicatorAnimationType
@@ -28,11 +31,7 @@ class HomeFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View {
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
@@ -101,6 +100,12 @@ class HomeFragment : Fragment() {
                 val textView = view.findViewById<TextView>(R.id.textViewKategoriItemCarousel)
                 imageView.setImageDrawable(ResourcesCompat.getDrawable(resources, data[position].image, null))
                 textView.text = data[position].kategori
+
+                imageView.setOnClickListener {
+                    val gotoProductPage = Intent(context, ProductPage::class.java)
+                    gotoProductPage.putExtra("KATEGORI", data[position].kategori)
+                    startActivity(gotoProductPage)
+                }
             }
             show()
         }
