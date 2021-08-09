@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fostiums.seaapp">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SeaApp">
-        <activity android:name=".ui.product.ProductPage"></activity>
+        <activity
+            android:name=".ui.penjual.PenjualActivity"
+            android:label="@string/title_activity_penjual"
+            android:theme="@style/Theme.SeaApp.NoActionBar"></activity>
+        <activity android:name=".ui.product.ProductPage" />
         <activity android:name=".ui.auth.Register" />
         <activity android:name=".ui.auth.Login" />
         <activity

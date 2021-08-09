@@ -22,4 +22,10 @@
         android:name="com.fostiums.seaapp.ui.cart.CartFragment"
         android:label="@string/title_cart"
         tools:layout="@layout/fragment_cart" />
+
+    <fragment
+        android:id="@+id/navigation_akun"
+        android:name="com.fostiums.seaapp.ui.akun.AkunFragment"
+        android:label="Akun"
+        tools:layout="@layout/fragment_akun" />
 </navigation>

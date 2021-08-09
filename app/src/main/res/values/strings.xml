@@ -3,4 +3,8 @@
     <string name="title_home">Home</string>
     <string name="title_order">Order</string>
     <string name="title_cart">Cart</string>
+    <string name="title_akun">Akun</string>
+    <string name="title_activity_penjual">PenjualActivity</string>
+    <string name="tab_text_1">Product</string>
+    <string name="tab_text_2">Pesanan</string>
 </resources>

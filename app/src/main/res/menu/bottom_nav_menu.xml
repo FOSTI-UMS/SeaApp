@@ -16,4 +16,9 @@
         android:icon="@drawable/cart_icon"
         android:title="@string/title_cart" />
 
+    <item
+        android:id="@+id/navigation_akun"
+        android:icon="@drawable/akun_icon"
+        android:title="@string/title_akun" />
+
 </menu>
