@@ -91,6 +91,16 @@
                     android:paddingBottom="10dp"
                     android:text="Pusat Penjual" />
 
+                <TextView
+                    android:id="@+id/btn_akun_logout"
+                    style="@style/viewParent.headerText.settingsTextIcon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_round_lock_24"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="Log Out" />
+
 
             </LinearLayout>
 
