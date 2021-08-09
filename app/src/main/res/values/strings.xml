@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">SeaApp</string>
     <string name="title_home">Home</string>
     <string name="title_order">Order</string>
@@ -7,4 +7,12 @@
     <string name="title_activity_penjual">PenjualActivity</string>
     <string name="tab_text_1">Product</string>
     <string name="tab_text_2">Pesanan</string>
+    <string name="welcome">Welcome back! Login with your data that you entered during registration</string>
+    <string name="log_in">Log In</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
 </resources>
