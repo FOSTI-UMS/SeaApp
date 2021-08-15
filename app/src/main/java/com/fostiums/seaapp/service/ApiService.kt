@@ -12,6 +12,14 @@ interface ApiService {
         @Query("page") page: Int,
     ): Call<ProductResponse>
 
+
+    @GET("seller/products")
+    fun getProductPenjualAll(
+        @Header("Authorization") authHeader: String,
+        @Query("page") page: Int,
+    ): Call<ProductResponse>
+
+
     @FormUrlEncoded
     @POST("login")
     fun login(

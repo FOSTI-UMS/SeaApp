@@ -4,11 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.fostiums.seaapp.R
 import com.fostiums.seaapp.databinding.FragmentPenjualProductBinding
+import com.fostiums.seaapp.models.ProductData
+import com.fostiums.seaapp.repository.Penjual
+import com.fostiums.seaapp.ui.penjual.adapter.ProductPenjualAdapter
 
 
 /**
@@ -18,7 +23,13 @@ class FragmentPenjualProduct : Fragment() {
 
     private lateinit var pageViewModel: PageViewModel
     private var _binding: FragmentPenjualProductBinding? = null
+    lateinit var adapter: ProductPenjualAdapter
+    var pageNow:Int = 1
+    var isLoadingMore:Boolean = false
+    lateinit var recyclerView: RecyclerView
+    var searchKeyword: String = ""
 
+    var productdata: List<ProductData>? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -30,20 +41,118 @@ class FragmentPenjualProduct : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
 
         _binding = FragmentPenjualProductBinding.inflate(inflater, container, false)
         val root = binding.root
 
-        val textView: TextView = binding.sectionLabel
-        pageViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+
+        recyclerView = root.findViewById(R.id.penjual_producr_rv)
+
+        loadList(0,searchKeyword)
+
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(
+                recyclerView: RecyclerView,
+                newState: Int
+            ) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (!recyclerView.canScrollVertically(1)) {
+                    loadMore(searchKeyword)
+                }
+            }
         })
+
+
         return root
     }
+
+
+
+    fun loadList(page:Int,search:String) {
+//        emptydatapenerimabantuan.visibility = View.GONE
+//        progresbarresponden.visibility = View.VISIBLE
+        Penjual(context).getAllProduct(page,
+            {
+                    data ->
+                        activity?.runOnUiThread {
+
+
+                            //progresbarresponden.visibility = View.GONE
+                            productdata = data?.data
+                            if (productdata?.size == 0) {
+                                //emptydatapenerimabantuan.visibility = View.VISIBLE
+                            }
+                            adapter = ProductPenjualAdapter(context, productdata)
+                            recyclerView.layoutManager = LinearLayoutManager(context)
+                            recyclerView.adapter = adapter
+                        }
+            },{error ->
+                //dialog errror
+                Toast.makeText(
+                    context,
+                    "Gagal Memuat Responden",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        )
+
+
+    }
+
+
+
+    fun loadMore(search: String) {
+        if (!isLoadingMore) {
+            isLoadingMore = true
+            //progresbarresponden.visibility = View.VISIBLE
+            Penjual(context).getAllProduct(pageNow,
+                { data ->
+                    activity?.runOnUiThread {
+                        if (data != null) {
+
+
+
+                            data.data.forEach { data ->
+                                productdata?.toMutableList()?.add(data)
+                                var panjang = productdata?.size
+                                if (panjang != null) {
+                                    adapter.notifyItemInserted( panjang - 1)
+                                }
+                            }
+                            adapter.notifyDataSetChanged()
+                            pageNow++
+                            //progresbarresponden.visibility = View.GONE
+                            isLoadingMore = false
+                        }
+                    }
+                }, { error ->
+                    //progresbarresponden.visibility = View.GONE
+                    Toast.makeText(
+                        context,
+                        "Load More Error" + error.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            )
+        }
+
+    }
+
+
+
+    fun refreshList(){
+        pageNow = 0
+        searchKeyword = ""
+        loadList(0,searchKeyword)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refreshList()
+    }
+
+
 
     companion object {
         /**
