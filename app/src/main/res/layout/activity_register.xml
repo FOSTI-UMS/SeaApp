@@ -1,8 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.auth.Register">
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:orientation="vertical">
+
+            <com.jama.carouselview.CarouselView
+                android:id="@+id/image_slide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:carouselOffset="start"
+                app:enableSnapping="true"
+                app:indicatorAnimationType="scale"
+                app:indicatorPadding="10"
+                app:indicatorRadius="5"
+                app:indicatorSelectedColor="@color/reg_select"
+                app:indicatorUnselectedColor="@color/reg_unselect"
+                app:resource="@layout/register_carousel_item"
+                app:scaleOnScroll="false"
+                app:setAutoPlay="true"
+                app:setAutoPlayDelay="3000"
+                app:size="3"
+                app:spacing="5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="550dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_sign_in"
+                android:layout_width="186dp"
+                android:layout_height="55dp"
+                android:background="@drawable/rounded_button"
+                android:elegantTextHeight="false"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/white"
+                android:text="@string/sign_in"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="650dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="right"
+                    android:text="Don't have an account?"
+                    android:textColor="@color/font1"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:linksClickable="true"
+                    android:text="@string/register"
+                    android:textColor="@color/btn_blue"
+                    android:textColorLink="@color/btn_blue"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

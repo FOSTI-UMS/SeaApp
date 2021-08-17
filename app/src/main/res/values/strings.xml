@@ -15,4 +15,13 @@
     <string name="forgot_your_password">Lupa Password?</string>
     <string name="login">Login</string>
     <string name="register">Daftar</string>
+    <string name="sign_in">Sign In</string>
+
+    <string name="reg_header_cart_women">Easy Shopping</string>
+    <string name="reg_header_delivery_man">Easy Shipping</string>
+    <string name="reg_header_fish_monger">Easy Selling</string>
+    <string name="reg_text_cart_women">Feel your awesome experience\nwhile shopping by\nyour phone</string>
+    <string name="reg_text_delivery_man">Your order will be immediately\ncollected and sent by our\ncourier</string>
+    <string name="reg_text_fish_monger"> </string>
+
 </resources>

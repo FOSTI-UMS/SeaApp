@@ -16,5 +16,6 @@
     <color name="font1">#160E4D</color>
 
     <color name="btn_blue">#2295D4</color>
-
+    <color name="reg_unselect">#C4C4C4</color>
+    <color name="reg_select">#FA8164</color>
 </resources>
