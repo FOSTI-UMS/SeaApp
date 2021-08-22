@@ -50,7 +50,7 @@ class ProductPage : AppCompatActivity() {
     fun initGridProduct() {
         val gridView = findViewById<ExpandableGridView>(R.id.productgridview)
         loadingProduct.visibility = View.VISIBLE
-        Product().getAllProduct(0,
+        Product(this).getAllProduct(0,
             { data ->
 
                 runOnUiThread {

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="30dp"
+            android:paddingHorizontal="30dp"
+            >
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textSize="30dp"
+                    android:textColor="#5A5A5A"
+                    style="@style/viewParent.headerText"
+                    android:layout_height="wrap_content"
+                    android:text="Product Baru" />
+
+            </LinearLayout>
+
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+
+                android:layout_height="match_parent">
+
+
+                    <!-- Views to mask -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:text="Foto" />
+
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_marginRight="10dp"
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:layout_margin="5dp"
+                                    android:elevation="10dp"
+                                    app:cardCornerRadius="8dp">
+
+                                    <ImageView
+                                        android:id="@+id/product_foto1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/white"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/empty_image" />
+                                </androidx.cardview.widget.CardView>
+                                <androidx.cardview.widget.CardView
+                                    android:layout_marginRight="10dp"
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:layout_margin="5dp"
+                                    android:elevation="10dp"
+                                    app:cardCornerRadius="8dp">
+
+                                    <ImageView
+                                        android:id="@+id/product_foto2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/white"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/empty_image" />
+                                </androidx.cardview.widget.CardView>
+                                <androidx.cardview.widget.CardView
+                                    android:layout_marginRight="5dp"
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:layout_margin="5dp"
+                                    android:elevation="10dp"
+                                    app:cardCornerRadius="8dp">
+
+                                    <ImageView
+                                        android:id="@+id/product_foto3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/white"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/empty_image" />
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:text="Kategori" />
+
+                            <Spinner
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/spinner_bg"
+                                android:id="@+id/spinner_kategori"
+                                android:layout_width="match_parent"
+                                android:layout_height="43dp" />
+
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:text="Nama Product" />
+
+                            <EditText
+                                android:id="@+id/product_nama"
+                                android:layout_width="match_parent"
+                                android:layout_height="43dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:background="@drawable/spinner_bg"
+                                android:ems="10"
+                                android:inputType="textFilter"
+                                android:textColor="#000000"
+                                android:textColorHint="#000000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:text="Nutrisi" />
+
+                            <EditText
+                                android:lines="10"
+                                android:minLines="5"
+                                android:maxLines="15"
+
+                                android:id="@+id/product_nutrisi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:background="@drawable/spinner_bg"
+                                android:inputType="textMultiLine"
+                                android:textColor="#000000"
+                                android:textColorHint="#000000" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:text="Harga" />
+
+                            <EditText
+                                android:id="@+id/product_harga"
+                                android:layout_width="match_parent"
+                                android:layout_height="43dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:background="@drawable/spinner_bg"
+                                android:inputType="numberSigned"
+                                android:textColor="#000000"
+                                android:textColorHint="#000000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:text="Kadaluwarsa" />
+
+                            <DatePicker
+                                android:id="@+id/date_Picker"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:calendarViewShown="false"
+                                android:datePickerMode="spinner" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:text="Satuan Harga" />
+
+                            <EditText
+                                android:id="@+id/product_satuan_harga"
+                                android:layout_width="match_parent"
+                                android:layout_height="43dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:background="@drawable/spinner_bg"
+                                android:inputType="textMultiLine"
+                                android:textColor="#000000"
+                                android:textColorHint="#000000" />
+                        </LinearLayout>
+
+
+
+                        <TextView
+                            android:layout_marginBottom="70dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="" />
+
+
+
+                    </LinearLayout>
+
+            </ScrollView>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonaddproduct"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="15dp"
+            android:background="@drawable/button_primmary"
+            android:text="Simpan"
+            android:textColor="#ffff" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

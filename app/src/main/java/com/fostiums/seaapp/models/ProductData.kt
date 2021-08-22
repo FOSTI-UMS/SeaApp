@@ -7,7 +7,7 @@ data class ProductData(
     val harga: Int,
     val id: Int,
     val kadaluwarsa: String,
-    val kategori_id: Int,
+    val kategori_id: String,
     val nama: String,
     val nutrisi: String,
     val satuan_harga: String,

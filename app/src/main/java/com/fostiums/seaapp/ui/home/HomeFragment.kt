@@ -2,6 +2,7 @@ package com.fostiums.seaapp.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.fostiums.seaapp.R
 import com.fostiums.seaapp.databinding.FragmentHomeBinding
+import com.fostiums.seaapp.repository.Product
 
 import com.fostiums.seaapp.ui.home.adapter.RekomendasiGridViewAdapter
 
 import com.fostiums.seaapp.ui.home.models.KategoriCarouselModel
 import com.fostiums.seaapp.ui.home.widgets.ExpandableGridView
 import com.fostiums.seaapp.ui.product.ProductPage
+import com.fostiums.seaapp.ui.product.adapter.ProductGridAdapter
 
 import com.jama.carouselview.CarouselView
 import com.jama.carouselview.enums.IndicatorAnimationType
@@ -50,8 +53,8 @@ class HomeFragment : Fragment() {
 
         val kategoriProduct = arrayListOf(
             KategoriCarouselModel(R.drawable.kategori_ikan,"Ikan"),
-            KategoriCarouselModel(R.drawable.kategori_ikan,"Kerang"),
-            KategoriCarouselModel(R.drawable.kategori_ikan,"Rumput Laut"),
+            KategoriCarouselModel(R.drawable.kerang,"Kerang"),
+            KategoriCarouselModel(R.drawable.rumput,"Rumput Laut"),
             KategoriCarouselModel(R.drawable.kategori_ikan,"Udang"),
             KategoriCarouselModel(R.drawable.kategori_ikan,"Garam")
         )
@@ -113,41 +116,35 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRekomendasiProductGridView() {
-        val playerNames = arrayOf(
-            "Gurame",
-            "Gurame",
-            "Gurame",
-            "Gurame",
-            "Gurame",
-            "Gurame",
-            "Gurame",
-            "Gurame",
-            "Gurame",
-        )
-        val playerImages = intArrayOf(
-            R.drawable.contohikan,
-            R.drawable.contohikan,
-            R.drawable.contohikan,
-            R.drawable.contohikan,
-            R.drawable.contohikan,
-            R.drawable.contohikan,
-            R.drawable.contohikan,
-            R.drawable.contohikan,
-            R.drawable.contohikan,
-        )
-        val gridView = binding.root.findViewById<ExpandableGridView>(R.id.rekomendasigridview)
 
-        val mainAdapter = context?.let { RekomendasiGridViewAdapter(it, playerNames, playerImages) }
+        val gridView = binding.root.findViewById<ExpandableGridView>(R.id.productgridview)
 
+        Product(context).getAllProduct(0,
+            { data ->
 
-        gridView.adapter = mainAdapter
-        gridView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            Toast.makeText(
-                context, "You CLicked " + playerNames[+position],
-                Toast.LENGTH_SHORT
-            ).show()
+                activity?.runOnUiThread {
+                    if (data != null) {
+                        val mainAdapter = context?.let { ProductGridAdapter(it,data.data) }
+                        gridView.adapter = mainAdapter
+                    }
+
+                }
+
+            }
+        ) { error ->
+            Log.e("FERRR", "initGridProduct: ", error)
+
         }
+
+        gridView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+
+
+        }
+
+
+
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

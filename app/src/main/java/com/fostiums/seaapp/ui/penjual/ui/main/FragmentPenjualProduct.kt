@@ -1,10 +1,12 @@
 package com.fostiums.seaapp.ui.penjual.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.*
+
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,11 +16,8 @@ import com.fostiums.seaapp.databinding.FragmentPenjualProductBinding
 import com.fostiums.seaapp.models.ProductData
 import com.fostiums.seaapp.repository.Penjual
 import com.fostiums.seaapp.ui.penjual.adapter.ProductPenjualAdapter
+import com.fostiums.seaapp.ui.penjual.ui.tambah.PenjualTambahProduct
 
-
-/**
- * A placeholder fragment containing a simple view.
- */
 class FragmentPenjualProduct : Fragment() {
 
     private lateinit var pageViewModel: PageViewModel
@@ -28,6 +27,7 @@ class FragmentPenjualProduct : Fragment() {
     var isLoadingMore:Boolean = false
     lateinit var recyclerView: RecyclerView
     var searchKeyword: String = ""
+    lateinit var loadingProduct: ProgressBar
 
     var productdata: List<ProductData>? = null
     // This property is only valid between onCreateView and
@@ -48,6 +48,7 @@ class FragmentPenjualProduct : Fragment() {
 
 
         recyclerView = root.findViewById(R.id.penjual_producr_rv)
+        loadingProduct = root.findViewById(R.id.progressBarProductPage)
 
         loadList(0,searchKeyword)
 
@@ -64,24 +65,31 @@ class FragmentPenjualProduct : Fragment() {
         })
 
 
+        val fab: Button = root.findViewById(R.id.btn_tambah_product)
+
+        fab.setOnClickListener { view ->
+
+            startActivity(Intent(context, PenjualTambahProduct::class.java))
+        }
+
+
+
         return root
     }
 
 
 
     fun loadList(page:Int,search:String) {
-//        emptydatapenerimabantuan.visibility = View.GONE
-//        progresbarresponden.visibility = View.VISIBLE
+        loadingProduct.visibility = View.VISIBLE
         Penjual(context).getAllProduct(page,
             {
                     data ->
                         activity?.runOnUiThread {
 
-
-                            //progresbarresponden.visibility = View.GONE
+                            loadingProduct.visibility = View.GONE
                             productdata = data?.data
                             if (productdata?.size == 0) {
-                                //emptydatapenerimabantuan.visibility = View.VISIBLE
+
                             }
                             adapter = ProductPenjualAdapter(context, productdata)
                             recyclerView.layoutManager = LinearLayoutManager(context)
@@ -89,9 +97,10 @@ class FragmentPenjualProduct : Fragment() {
                         }
             },{error ->
                 //dialog errror
+                loadingProduct.visibility = View.GONE
                 Toast.makeText(
                     context,
-                    "Gagal Memuat Responden",
+                    "Gagal Memuat data",
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -105,7 +114,6 @@ class FragmentPenjualProduct : Fragment() {
     fun loadMore(search: String) {
         if (!isLoadingMore) {
             isLoadingMore = true
-            //progresbarresponden.visibility = View.VISIBLE
             Penjual(context).getAllProduct(pageNow,
                 { data ->
                     activity?.runOnUiThread {
@@ -122,12 +130,10 @@ class FragmentPenjualProduct : Fragment() {
                             }
                             adapter.notifyDataSetChanged()
                             pageNow++
-                            //progresbarresponden.visibility = View.GONE
                             isLoadingMore = false
                         }
                     }
                 }, { error ->
-                    //progresbarresponden.visibility = View.GONE
                     Toast.makeText(
                         context,
                         "Load More Error" + error.message,
@@ -138,6 +144,7 @@ class FragmentPenjualProduct : Fragment() {
         }
 
     }
+
 
 
 

@@ -26,11 +26,6 @@ class PenjualActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
-        val fab: FloatingActionButton = binding.fabPenjualTambahBarang
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Tambah barang", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
     }
 }
